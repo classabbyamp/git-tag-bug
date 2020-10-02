@@ -1,0 +1,39 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+name: Showcase Bug
+
+jobs:
+  ubuntu-1804:
+    name: Showcase Bug on 18.04
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get Tag Info
+        id: get_tag
+        shell: bash
+        run: |
+          SUBJECT=$(/usr/bin/git tag -l ${GITHUB_REF#refs/tags/} --format='%(subject)')
+          echo SUBJECT=$SUBJECT
+          BODY=$(/usr/bin/git tag -l ${GITHUB_REF#refs/tags/} --format='%(body)')
+          echo BODY=$BODY
+  ubuntu-2004:
+    name: Showcase Bug on 20.04
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get Tag Info
+        id: get_tag
+        shell: bash
+        run: |
+          SUBJECT=$(/usr/bin/git tag -l ${GITHUB_REF#refs/tags/} --format='%(subject)')
+          echo SUBJECT=$SUBJECT
+          BODY=$(/usr/bin/git tag -l ${GITHUB_REF#refs/tags/} --format='%(body)')
+          echo BODY=$BODY
+
